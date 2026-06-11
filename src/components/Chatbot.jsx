@@ -17,8 +17,8 @@ export default function Chatbot() {
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
-  // Read Groq API key directly from environment variables
-  const apiKey = import.meta.env.VITE_GROQ_API_KEY || '';
+  // Read Gemini / Groq API key directly from environment variables
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.VITE_GROQ_API_KEY || '';
   
   const messagesEndRef = useRef(null);
   const recognitionRef = useRef(null);
@@ -128,8 +128,8 @@ export default function Chatbot() {
     }
   };
 
-  // Call Groq API completions
-  const queryGroqAPI = async (chatHistory) => {
+  // Call Gemini 2.5 Flash API
+  const queryGeminiAPI = async (chatHistory) => {
     if (!apiKey) {
       throw new Error('API_KEY_MISSING');
     }
@@ -172,38 +172,38 @@ Diwakar Sir ke sath direct connect karne ke liye aur expert tutor finalize karne
 
 [SYSTEM NOTE: If you have successfully collected all 6 pieces of information and are presenting the final summary with the closing script, please append the exact tag [SHOW_CONNECT_BUTTON] at the very end of your response so the system can display the direct WhatsApp contact button to the parent.]`;
 
-    // Map message format
-    const formattedMessages = [
-      { role: 'system', content: systemPrompt },
-      ...chatHistory.map(msg => ({
-        role: msg.role === 'user' ? 'user' : 'assistant',
-        // Clean system tag before sending back to LLM to prevent loop
-        content: msg.content.replace(/\[SHOW_CONNECT_BUTTON\]/g, '').trim()
-      }))
-    ];
+    // Map history to Gemini API format (excluding greeting to ensure history starts with user)
+    const geminiHistory = chatHistory
+      .slice(1)
+      .map(msg => ({
+        role: msg.role === 'user' ? 'user' : 'model',
+        parts: [{ text: msg.content.replace(/\[SHOW_CONNECT_BUTTON\]/g, '').trim() }]
+      }));
 
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
-        messages: formattedMessages,
-        temperature: 0.1, // Set temperature very low to prevent hallucinations
-        max_tokens: 800
+        contents: geminiHistory,
+        systemInstruction: {
+          parts: [{ text: systemPrompt }]
+        },
+        generationConfig: {
+          temperature: 0.1
+        }
       })
     });
 
     if (!response.ok) {
       const errData = await response.json().catch(() => ({}));
-      console.error('Groq API Error:', errData);
+      console.error('Gemini API Error:', errData);
       throw new Error(errData.error?.message || `HTTP error! Status: ${response.status}`);
     }
 
     const data = await response.json();
-    return data.choices[0].message.content;
+    return data.candidates[0].content.parts[0].text;
   };
 
   // Send message handler
@@ -220,7 +220,7 @@ Diwakar Sir ke sath direct connect karne ke liye aur expert tutor finalize karne
     setIsLoading(true);
 
     try {
-      const aiReply = await queryGroqAPI(updatedMessages);
+      const aiReply = await queryGeminiAPI(updatedMessages);
       setMessages(prev => [...prev, { role: 'assistant', content: aiReply }]);
       
       // Auto speak response
@@ -230,7 +230,7 @@ Diwakar Sir ke sath direct connect karne ke liye aur expert tutor finalize karne
       let errMsg = 'Sorry, service me kuch error aa gaya hai. Please thodi der baad check karein.';
       
       if (err.message === 'API_KEY_MISSING') {
-        errMsg = 'Groq API Key (VITE_GROQ_API_KEY) set nahi hai environment me. Please check karein.';
+        errMsg = 'Gemini API Key (VITE_GEMINI_API_KEY) set nahi hai environment me. Please check karein.';
       }
       
       setMessages(prev => [...prev, { role: 'assistant', content: errMsg }]);
