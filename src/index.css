@@ -30,9 +30,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4 { color: var(--secondary); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
-h1 { font-size: clamp(2.5rem, 6vw, 4rem); }
-h2 { font-size: clamp(2rem, 4vw, 2.5rem); }
+h1, h2, h3, h4 { color: var(--secondary); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; }
+h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
 h3 { font-size: 1.25rem; }
 
 a { text-decoration: none; color: inherit; transition: all 0.2s; }
@@ -123,13 +123,72 @@ a { text-decoration: none; color: inherit; transition: all 0.2s; }
 }
 
 /* Layout Classes */
-.hero-section { min-height: 90vh; display: flex; align-items: center; padding-top: 120px; position: relative; overflow: hidden; }
-.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
-.hero-content { position: relative; z-index: 10; padding-right: 2rem; }
-.hero-image-wrapper { position: relative; }
-.hero-subtitle { max-width: 550px; margin-bottom: 3rem; font-size: 1.25rem; color: var(--text); }
-.hero-buttons { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.trust-card { position: absolute; bottom: 10%; left: -10%; padding: 1.5rem; display: flex; align-items: center; gap: 1rem; animation-delay: 1s; background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); border: 1px solid var(--border); }
+.hero-section {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 0 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+}
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding-right: 1.5rem;
+}
+.hero-subtitle {
+  max-width: 540px;
+  margin-top: 1.25rem;
+  margin-bottom: 2.5rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  color: var(--text);
+  line-height: 1.6;
+}
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-image {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.1);
+}
+.trust-card {
+  position: absolute;
+  bottom: 8%;
+  left: -5%;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation-delay: 1s;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border);
+  z-index: 10;
+}
 .trust-icon { background: #ecfdf5; padding: 0.75rem; border-radius: 50%; }
 .trust-title { font-weight: 800; color: var(--secondary); }
 .trust-subtitle { font-size: 0.875rem; color: var(--text); }
@@ -153,41 +212,180 @@ a { text-decoration: none; color: inherit; transition: all 0.2s; }
 .blob-1 { top: -10%; right: -5%; width: 500px; height: 500px; background: rgba(37, 99, 235, 0.08); animation-delay: 0s; }
 .blob-2 { top: 20%; left: -10%; width: 400px; height: 400px; background: rgba(245, 158, 11, 0.05); animation-delay: 2s; }
 
-/* Mobile Optimization */
-@media (max-width: 992px) {
-  .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
-  .hero-content { padding-right: 0; display: flex; flex-direction: column; align-items: center; }
-  .hero-buttons { justify-content: center; width: 100%; }
-  .trust-card { bottom: -5%; left: 50%; transform: translateX(-50%); width: max-content; }
-  .blob-1, .blob-2 { display: none; }
+/* Responsive Design & Media Queries */
+
+/* Large Laptops / Tablets Landscape */
+@media (max-width: 1200px) {
+  .hero-grid {
+    gap: 3rem;
+  }
+  .hero-content {
+    padding-right: 0;
+  }
+  .hero-subtitle {
+    margin-bottom: 2rem;
+  }
+  .trust-card {
+    left: 0;
+    bottom: 5%;
+  }
 }
 
+/* Tablets & Medium Screens (Portrait & Small Landscape) */
+@media (max-width: 992px) {
+  .hero-section {
+    padding: 120px 0 60px 0;
+    min-height: auto;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3.5rem;
+  }
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  .hero-subtitle {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .hero-buttons {
+    justify-content: center;
+    width: 100%;
+  }
+  .hero-image-wrapper {
+    max-width: 440px;
+    margin: 0 auto;
+    padding-bottom: 2rem; /* Creates space so the absolute positioned trust card doesn't overlap section boundary */
+  }
+  .trust-card {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+  }
+  .blob-1, .blob-2 {
+    display: none;
+  }
+}
+
+/* Mobile Screens */
 @media (max-width: 768px) {
-  .grid-cols-2, .grid-cols-3 { grid-template-columns: 1fr; gap: 2rem; }
+  .grid-cols-2, .grid-cols-3 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
   
   /* Navbar Overrides */
-  .hide-on-mobile { display: none !important; }
-  .mobile-menu-btn { display: block; }
-  .mobile-menu {
-    display: flex; flex-direction: column; gap: 1.5rem; padding: 2rem;
-    background: white; position: absolute; top: 100%; left: 0; right: 0;
-    border-bottom: 1px solid var(--border); box-shadow: var(--shadow-md);
+  .hide-on-mobile {
+    display: none !important;
   }
-  .mobile-menu a { font-weight: 600; color: var(--secondary); font-size: 1.125rem; }
+  .mobile-menu-btn {
+    display: block;
+  }
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: white;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+  }
+  .mobile-menu a {
+    font-weight: 600;
+    color: var(--secondary);
+    font-size: 1.125rem;
+  }
 
   /* Typography & Spacing Overrides */
-  h1 { font-size: 2.25rem !important; }
-  h2 { font-size: 1.75rem !important; }
-  .section { padding: 4rem 0; }
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.5rem) !important;
+    line-height: 1.2;
+  }
+  h2 {
+    font-size: clamp(1.6rem, 5vw, 2rem) !important;
+  }
+  .section {
+    padding: 3.5rem 0;
+  }
   
-  .hero-section { padding-top: 100px; min-height: auto; padding-bottom: 3rem; }
-  .hero-subtitle { font-size: 1.1rem; }
-  .hero-buttons { flex-direction: column; width: 100%; }
-  .hero-buttons .btn { width: 100%; justify-content: center; }
+  .hero-section {
+    padding-top: 100px;
+    padding-bottom: 2.5rem;
+  }
+  .hero-subtitle {
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
   
-  .cta-card { padding: 3rem 1.5rem; }
-  .stats-grid { padding: 3rem 0; gap: 2.5rem; }
-  .stat-number { font-size: 2.5rem; }
+  .hero-image-wrapper {
+    max-width: 360px;
+  }
+  .trust-card {
+    padding: 0.85rem 1.1rem;
+    gap: 0.6rem;
+  }
+  .trust-icon {
+    padding: 0.5rem;
+  }
+  .trust-title {
+    font-size: 0.875rem;
+  }
+  .trust-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .cta-card {
+    padding: 3.5rem 1.5rem;
+  }
+  .stats-grid {
+    padding: 2.5rem 0;
+    gap: 2rem;
+  }
+  .stat-number {
+    font-size: 2.25rem;
+  }
   
-  .card { padding: 1.5rem; }
+  .card {
+    padding: 1.75rem;
+  }
+}
+
+/* Small Mobile Screens */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.85rem !important;
+  }
+  .hero-section {
+    padding-top: 90px;
+    padding-bottom: 2rem;
+  }
+  .hero-image-wrapper {
+    max-width: 280px;
+  }
+  .badge {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  .trust-card {
+    padding: 0.75rem 0.9rem;
+    bottom: -5px;
+  }
 }
