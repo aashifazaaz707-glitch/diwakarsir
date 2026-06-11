@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { MessageSquare, Send, Mic, Volume2, VolumeX, X, Settings, Loader2 } from 'lucide-react';
+import { MessageSquare, Send, Mic, Volume2, VolumeX, X, Loader2 } from 'lucide-react';
 import './Chatbot.css';
 
 // Initial assistant message
@@ -17,10 +17,8 @@ export default function Chatbot() {
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
-  // API settings
-  const [apiKey, setApiKey] = useState(import.meta.env.VITE_GROQ_API_KEY || '');
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [tempApiKey, setTempApiKey] = useState('');
+  // Read Groq API key directly from environment variables
+  const apiKey = import.meta.env.VITE_GROQ_API_KEY || '';
   
   const messagesEndRef = useRef(null);
   const recognitionRef = useRef(null);
@@ -64,19 +62,7 @@ export default function Chatbot() {
       synthRef.current = window.speechSynthesis;
     }
 
-    // Load API key from local storage if not in env
-    if (!apiKey) {
-      const storedKey = localStorage.getItem('diwakar_groq_api_key');
-      if (storedKey) {
-        setApiKey(storedKey);
-      }
-    }
   }, []);
-
-  // Sync temp key with active key in settings
-  useEffect(() => {
-    setTempApiKey(apiKey);
-  }, [apiKey]);
 
   // Scroll to bottom on new messages
   useEffect(() => {
@@ -214,22 +200,13 @@ CRITICAL RULES:
       let errMsg = 'Sorry, service me kuch error aa gaya hai. Please thodi der baad check karein.';
       
       if (err.message === 'API_KEY_MISSING') {
-        errMsg = 'Groq API Key set nahi hai. Please chatbot ke header me settings button click karke API Key add karein, ya fir project me .env.local file config karein.';
+        errMsg = 'Groq API Key (VITE_GROQ_API_KEY) set nahi hai environment me. Please check karein.';
       }
       
       setMessages(prev => [...prev, { role: 'assistant', content: errMsg }]);
     } finally {
       setIsLoading(false);
     }
-  };
-
-  // Save key manually from settings UI
-  const handleSaveSettings = (e) => {
-    e.preventDefault();
-    const key = tempApiKey.trim();
-    setApiKey(key);
-    localStorage.setItem('diwakar_groq_api_key', key);
-    setIsSettingsOpen(false);
   };
 
   // WhatsApp redirection link builder
@@ -288,14 +265,7 @@ CRITICAL RULES:
                 {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
               </button>
               
-              {/* Settings Cog (API Key override) */}
-              <button 
-                className="chatbot-header-btn"
-                onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-                title="API Settings"
-              >
-                <Settings size={16} />
-              </button>
+
 
               {/* Close Button */}
               <button 
@@ -311,61 +281,8 @@ CRITICAL RULES:
             </div>
           </div>
 
-          {/* Settings Overlay panel inside Chat widget */}
-          {isSettingsOpen && (
-            <div style={{
-              position: 'absolute',
-              top: '70px',
-              left: '0',
-              right: '0',
-              background: 'white',
-              padding: '20px',
-              borderBottom: '1px solid var(--border)',
-              zIndex: 1010,
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-            }}>
-              <form onSubmit={handleSaveSettings}>
-                <div className="form-group" style={{ marginBottom: '1rem' }}>
-                  <label className="form-label" style={{ fontSize: '0.8rem' }}>Groq API Key</label>
-                  <input 
-                    type="password" 
-                    className="form-input" 
-                    placeholder="gsk_..."
-                    value={tempApiKey}
-                    onChange={(e) => setTempApiKey(e.target.value)}
-                    style={{ padding: '8px 12px', fontSize: '0.9rem' }}
-                  />
-                  <p style={{ fontSize: '0.7rem', color: 'var(--text)', marginTop: '4px' }}>
-                    Aap apna free Groq key yahan save kar sakte hain jo browser me hi rahega.
-                  </p>
-                </div>
-                <div className="flex gap-2">
-                  <button type="submit" className="btn btn-primary" style={{ padding: '6px 12px', fontSize: '0.8rem', borderRadius: '4px' }}>
-                    Save Key
-                  </button>
-                  <button 
-                    type="button" 
-                    className="btn btn-outline" 
-                    onClick={() => setIsSettingsOpen(false)}
-                    style={{ padding: '6px 12px', fontSize: '0.8rem', borderRadius: '4px' }}
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
-            </div>
-          )}
-
           {/* Messages Area */}
           <div className="chatbot-messages">
-            {/* Show setup alert if key is missing */}
-            {!apiKey && (
-              <div className="chatbot-api-alert">
-                <p>
-                  <strong>API Key Missing!</strong> Chatbot ko activate karne ke liye <code>.env.local</code> file me <code>VITE_GROQ_API_KEY</code> set karein, ya fir upar settings icon click karke paste karein.
-                </p>
-              </div>
-            )}
 
             {messages.map((msg, index) => {
               const isAssistant = msg.role === 'assistant';
