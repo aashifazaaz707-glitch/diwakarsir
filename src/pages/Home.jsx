@@ -1,98 +1,106 @@
 import { Link } from 'react-router-dom';
-import { ShieldCheck, Users, GraduationCap, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Users, GraduationCap, ArrowRight, Sparkles } from 'lucide-react';
 
 export default function Home() {
   return (
     <div>
-      {/* Hero */}
-      <section className="hero">
-        <div className="container">
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'white', padding: '0.5rem 1rem', borderRadius: 'var(--radius-full)', border: '1px solid var(--border)', marginBottom: '2rem', fontSize: '0.875rem', fontWeight: 500 }}>
-            <span style={{ color: 'var(--accent)' }}>★</span> 5.0 Rated by Parents
+      {/* Hero Section */}
+      <section className="section" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: '120px' }}>
+        <div className="glow-bg"></div>
+        <div className="container text-center">
+          <div className="animate-fade-up" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255,255,255,0.05)', padding: '0.5rem 1rem', borderRadius: 'var(--radius-full)', border: '1px solid var(--border)', marginBottom: '2.5rem', fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
+            <Sparkles size={16} color="var(--accent-secondary)" /> 
+            <span>Redefining Education in Patna</span>
           </div>
-          <h1 className="hero-title">
-            The Standard for <br/>
-            <span style={{ color: 'var(--accent)' }}>Home Tuition</span> in Patna
+          
+          <h1 className="animate-fade-up delay-1">
+            Elite Home Tuition. <br/>
+            Uncompromising Quality.
           </h1>
-          <p className="hero-subtitle">
-            Premium, personalized 1-on-1 education. Verified tutors for K-12, IIT-JEE, and NEET delivered right to your doorstep.
+          
+          <p className="animate-fade-up delay-2" style={{ maxWidth: '650px', margin: '0 auto 3.5rem', fontSize: '1.25rem' }}>
+            Experience personalized 1-on-1 education designed for excellence. We connect top-tier verified educators with students striving for academic greatness in K-12, IIT-JEE, and NEET.
           </p>
-          <div className="flex items-center justify-center gap-4">
-            <Link to="/parent-enquiry" className="btn btn-primary">
-              Book Free Demo
+          
+          <div className="flex items-center justify-center gap-4 animate-fade-up delay-3 hero-buttons">
+            <Link to="/parent-enquiry" className="btn btn-gradient gap-2">
+              <span>Book Your Free Demo</span> <ArrowRight size={18} />
             </Link>
             <Link to="/tutor-enquiry" className="btn btn-outline">
-              Join as Tutor
+              Apply as Educator
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="section" style={{ background: 'var(--primary)', color: 'white' }}>
+      {/* Modern Stats Section */}
+      <section className="section" style={{ padding: '4rem 0', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', background: 'rgba(0,0,0,0.3)' }}>
         <div className="container">
           <div className="grid grid-cols-3 gap-8 text-center">
-            <div>
-              <div style={{ fontSize: '3rem', fontWeight: 700, marginBottom: '0.5rem' }}>1000+</div>
-              <div style={{ color: 'var(--text-muted)' }}>Students Taught</div>
+            <div className="animate-fade-up">
+              <div style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '0.25rem', background: 'var(--gradient-glow)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>1,000+</div>
+              <div style={{ color: 'var(--text-secondary)', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.875rem' }}>Students Mentored</div>
             </div>
-            <div>
-              <div style={{ fontSize: '3rem', fontWeight: 700, marginBottom: '0.5rem' }}>700+</div>
-              <div style={{ color: 'var(--text-muted)' }}>Verified Tutors</div>
+            <div className="animate-fade-up delay-1">
+              <div style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '0.25rem', background: 'var(--gradient-glow)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>700+</div>
+              <div style={{ color: 'var(--text-secondary)', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.875rem' }}>Verified Elite Tutors</div>
             </div>
-            <div>
-              <div style={{ fontSize: '3rem', fontWeight: 700, marginBottom: '0.5rem' }}>100%</div>
-              <div style={{ color: 'var(--text-muted)' }}>Parent Satisfaction</div>
+            <div className="animate-fade-up delay-2">
+              <div style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '0.25rem', background: 'var(--gradient-glow)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>100%</div>
+              <div style={{ color: 'var(--text-secondary)', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.875rem' }}>Parent Satisfaction</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features */}
+      {/* Platform Features */}
       <section className="section" id="about">
         <div className="container">
-          <div className="text-center" style={{ marginBottom: '4rem' }}>
-            <h2>Why Choose Us</h2>
-            <p className="text-muted" style={{ maxWidth: '600px', margin: '1rem auto 0' }}>
-              We bring structure, trust, and exceptional quality to home education.
+          <div className="text-center animate-fade-up" style={{ marginBottom: '5rem' }}>
+            <h2 style={{ marginBottom: '1.5rem' }}>The Diwakar Advantage</h2>
+            <p style={{ maxWidth: '600px', margin: '0 auto' }}>
+              We don't just send tutors; we provide a structured ecosystem designed to guarantee results, safety, and transparency.
             </p>
           </div>
           <div className="grid grid-cols-3 gap-8">
-            <div className="card text-center flex flex-col items-center">
-              <div style={{ padding: '1rem', background: 'var(--surface)', borderRadius: 'var(--radius-full)', marginBottom: '1.5rem', color: 'var(--accent)' }}>
-                <ShieldCheck size={32} />
+            <div className="card animate-fade-up">
+              <div style={{ width: '64px', height: '64px', background: 'rgba(138, 43, 226, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem', border: '1px solid rgba(138, 43, 226, 0.2)' }}>
+                <ShieldCheck size={32} color="var(--accent)" />
               </div>
-              <h3>Verified Tutors</h3>
-              <p className="text-muted" style={{ marginTop: '0.5rem' }}>Rigorous background checks and qualification verification for absolute peace of mind.</p>
+              <h3 style={{ marginBottom: '1rem' }}>Vetted Excellence</h3>
+              <p>Every educator passes a rigorous multi-stage background check, interview, and subject-matter expertise validation.</p>
             </div>
-            <div className="card text-center flex flex-col items-center">
-              <div style={{ padding: '1rem', background: 'var(--surface)', borderRadius: 'var(--radius-full)', marginBottom: '1.5rem', color: 'var(--accent)' }}>
-                <Users size={32} />
+            <div className="card animate-fade-up delay-1">
+              <div style={{ width: '64px', height: '64px', background: 'rgba(255, 0, 127, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem', border: '1px solid rgba(255, 0, 127, 0.2)' }}>
+                <Users size={32} color="var(--accent-secondary)" />
               </div>
-              <h3>1-on-1 Focus</h3>
-              <p className="text-muted" style={{ marginTop: '0.5rem' }}>Personalized attention ensuring your child learns at their optimal pace and style.</p>
+              <h3 style={{ marginBottom: '1rem' }}>Bespoke Matching</h3>
+              <p>We analyze your child's learning style and academic goals to pair them with the perfect mentor, not just whoever is available.</p>
             </div>
-            <div className="card text-center flex flex-col items-center">
-              <div style={{ padding: '1rem', background: 'var(--surface)', borderRadius: 'var(--radius-full)', marginBottom: '1.5rem', color: 'var(--accent)' }}>
-                <GraduationCap size={32} />
+            <div className="card animate-fade-up delay-2">
+              <div style={{ width: '64px', height: '64px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                <GraduationCap size={32} color="white" />
               </div>
-              <h3>Expert Coaching</h3>
-              <p className="text-muted" style={{ marginTop: '0.5rem' }}>Specialized tutors for board exams, IIT-JEE, and NEET preparations.</p>
+              <h3 style={{ marginBottom: '1rem' }}>Result Driven</h3>
+              <p>From foundational building blocks to intense IIT-JEE & NEET preparation, our methodology is focused entirely on measurable outcomes.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section" style={{ background: 'var(--surface)' }}>
-        <div className="container flex flex-col items-center text-center">
-          <h2>Ready to accelerate learning?</h2>
-          <p className="text-muted" style={{ margin: '1rem 0 2rem', maxWidth: '500px' }}>
-            Get matched with the perfect tutor within 24 hours. Your first demo class is completely free.
-          </p>
-          <Link to="/parent-enquiry" className="btn btn-primary gap-2">
-            Get Started <ArrowRight size={18} />
-          </Link>
+      {/* CTA Section */}
+      <section className="section" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'var(--gradient-glow)', opacity: 0.05, zIndex: -1 }}></div>
+        <div className="container">
+          <div className="card text-center animate-fade-up" style={{ padding: '6rem 2rem', background: 'rgba(0,0,0,0.8)', borderColor: 'rgba(255,255,255,0.1)' }}>
+            <h2 style={{ marginBottom: '1.5rem' }}>Ready to unlock your child's potential?</h2>
+            <p style={{ margin: '0 auto 3rem', maxWidth: '500px' }}>
+              Experience our premium service firsthand. Get matched with an elite tutor within 24 hours. Your first session is on us.
+            </p>
+            <Link to="/parent-enquiry" className="btn btn-primary gap-2" style={{ padding: '1rem 3rem', fontSize: '1.125rem' }}>
+              Get Started Now <ArrowRight size={20} />
+            </Link>
+          </div>
         </div>
       </section>
     </div>
