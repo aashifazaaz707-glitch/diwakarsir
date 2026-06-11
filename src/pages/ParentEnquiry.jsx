@@ -166,6 +166,7 @@ export default function ParentEnquiry() {
       };
 
       if (googleSheetUrl) {
+        console.log("Submitting parent enquiry to Google Sheets. URL:", googleSheetUrl, "Payload:", payload);
         try {
           await fetch(googleSheetUrl, {
             method: 'POST',
@@ -175,9 +176,12 @@ export default function ParentEnquiry() {
             },
             body: JSON.stringify(payload)
           });
+          console.log("Submit request sent to Google Sheets successfully.");
         } catch (err) {
           console.error('Failed to submit to Google Sheets:', err);
         }
+      } else {
+        console.warn("Google Sheets URL is missing! Make sure VITE_GOOGLE_SHEETS_URL is configured in your environment variables/secrets.");
       }
       
       setIsSubmitting(false);

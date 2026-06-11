@@ -198,6 +198,7 @@ export default function TutorEnquiry() {
       };
 
       if (googleSheetUrl) {
+        console.log("Submitting tutor registration to Google Sheets. URL:", googleSheetUrl, "Payload:", payload);
         try {
           await fetch(googleSheetUrl, {
             method: 'POST',
@@ -207,9 +208,12 @@ export default function TutorEnquiry() {
             },
             body: JSON.stringify(payload)
           });
+          console.log("Submit request sent to Google Sheets successfully.");
         } catch (err) {
           console.error('Failed to submit tutor application to Google Sheets:', err);
         }
+      } else {
+        console.warn("Tutor Google Sheets URL is missing! Make sure VITE_GOOGLE_SHEETS_TUTOR_URL is configured in your environment variables/secrets.");
       }
       
       setIsSubmitting(false);
