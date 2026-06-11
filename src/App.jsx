@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import ParentEnquiry from './pages/ParentEnquiry'
 import TutorEnquiry from './pages/TutorEnquiry'
+import Chatbot from './components/Chatbot'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <Chatbot />
     </div>
   )
 }
