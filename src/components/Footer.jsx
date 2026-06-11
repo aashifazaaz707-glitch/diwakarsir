@@ -4,7 +4,23 @@ export default function Footer() {
       <div className="container">
         <div className="grid grid-cols-3 gap-8" style={{ marginBottom: '3rem' }}>
           <div>
-            <h3 style={{ marginBottom: '1rem', color: 'var(--primary)' }}>Diwakar Tutors</h3>
+            <div className="flex items-center gap-2" style={{ marginBottom: '1rem' }}>
+              <div style={{
+                background: 'linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%)',
+                padding: '0.4rem',
+                borderRadius: '8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 4px 10px rgba(249, 115, 22, 0.15)'
+              }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'white' }}>
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                </svg>
+              </div>
+              <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--secondary)', letterSpacing: '-0.025em' }}>Diwakar Tutors</span>
+            </div>
             <p style={{ color: 'var(--text)', maxWidth: '280px' }}>
               The most trusted home tuition platform in Patna. Connecting exceptional tutors with ambitious students.
             </p>

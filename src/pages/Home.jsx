@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Users, GraduationCap, ArrowRight, Star, Quote, ChevronDown } from 'lucide-react';
 import heroImage from '../assets/hero-image.png';
+import whyChooseUsImage from '../assets/why-choose-us.png';
 
 export default function Home() {
   return (
@@ -84,27 +85,45 @@ export default function Home() {
               We provide a structured, safe, and highly effective learning environment for your child in Patna.
             </p>
           </div>
-          <div className="grid grid-cols-3 gap-8 features-grid">
-            <div className="card animate-fade-up">
-              <div className="feature-icon">
-                <ShieldCheck size={28} />
-              </div>
-              <h3>100% Verified Tutors</h3>
-              <p>Every home tutor in Patna undergoes a strict background check, identity verification, and subject proficiency test before they teach.</p>
+          <div className="why-choose-grid">
+            <div className="why-choose-image-wrapper animate-fade-up">
+              <img 
+                src={whyChooseUsImage} 
+                alt="Expert tutor teaching a student at home in Patna" 
+                className="why-choose-image" 
+              />
             </div>
-            <div className="card animate-fade-up delay-1">
-              <div className="feature-icon">
-                <Users size={28} />
+            
+            <div className="why-choose-features">
+              <div className="why-choose-card animate-fade-up">
+                <div className="feature-icon-wrapper">
+                  <ShieldCheck size={24} />
+                </div>
+                <div>
+                  <h3>100% Verified Tutors</h3>
+                  <p>Every home tutor in Patna undergoes a strict background check, identity verification, and subject proficiency test before they teach.</p>
+                </div>
               </div>
-              <h3>Personalized Learning</h3>
-              <p>No more crowded batches. We focus entirely on your child's individual pace, strengths, and areas of improvement.</p>
-            </div>
-            <div className="card animate-fade-up delay-2">
-              <div className="feature-icon">
-                <GraduationCap size={28} />
+              
+              <div className="why-choose-card animate-fade-up delay-1">
+                <div className="feature-icon-wrapper">
+                  <Users size={24} />
+                </div>
+                <div>
+                  <h3>Personalized Learning</h3>
+                  <p>No more crowded batches. We focus entirely on your child's individual pace, strengths, and areas of improvement.</p>
+                </div>
               </div>
-              <h3>Expert Coaching</h3>
-              <p>Specialized educators available for board exams, foundational years, and highly competitive exams like IIT-JEE, NEET, and UPSC BPSC.</p>
+              
+              <div className="why-choose-card animate-fade-up delay-2">
+                <div className="feature-icon-wrapper">
+                  <GraduationCap size={24} />
+                </div>
+                <div>
+                  <h3>Expert Coaching</h3>
+                  <p>Specialized educators available for board exams, foundational years, and highly competitive exams like IIT-JEE, NEET, and UPSC BPSC.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -141,7 +160,7 @@ export default function Home() {
       </section>
 
       {/* SEO Content Section / FAQ */}
-      <section className="section section-alt">
+      <section className="section section-alt" id="classes">
         <div className="container">
            <div className="text-center animate-fade-up section-header">
             <h2>Classes & Subjects We Cover</h2>

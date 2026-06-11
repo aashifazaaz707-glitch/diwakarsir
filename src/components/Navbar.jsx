@@ -9,10 +9,21 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="container flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2" style={{ fontWeight: 800, fontSize: '1.25rem', color: 'var(--secondary)' }}>
-          <div style={{ background: 'var(--primary)', padding: '0.4rem', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <BookOpen size={20} color="white" />
+          <div style={{
+            background: 'linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%)',
+            padding: '0.45rem',
+            borderRadius: '10px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 4px 12px rgba(249, 115, 22, 0.2)'
+          }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'white' }}>
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg>
           </div>
-          <span>Diwakar Tutors</span>
+          <span style={{ letterSpacing: '-0.025em', fontWeight: 800 }}>Diwakar Tutors</span>
         </Link>
         
         {/* Desktop Menu */}
