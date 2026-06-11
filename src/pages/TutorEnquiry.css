@@ -1,0 +1,299 @@
+/* Tutor Enquiry Wizard Styling */
+
+/* Main Container */
+.tutor-wizard-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xl);
+  transition: all 0.3s ease;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Progress Header */
+.tutor-progress-container {
+  margin-bottom: 2.5rem;
+}
+
+.tutor-progress-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--secondary);
+  margin-bottom: 0.75rem;
+}
+
+.tutor-progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: #f1f5f9;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.tutor-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6 0%, #4f46e5 100%); /* Indigo-blue theme for Tutors */
+  border-radius: var(--radius-full);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Step Animations */
+.tutor-step-content {
+  animation: tutor-fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@keyframes tutor-fade-in {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Step Titles */
+.tutor-step-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--secondary);
+  margin-bottom: 0.5rem;
+}
+
+.tutor-step-subtitle {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+/* Grid Cards for Qualification and Timing */
+.tutor-grid-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 480px) {
+  .tutor-grid-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tutor-select-card {
+  position: relative;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--bg-main);
+  user-select: none;
+}
+
+.tutor-select-card:hover {
+  border-color: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.tutor-select-card-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Selected State */
+.tutor-select-card.selected {
+  border-color: #4f46e5;
+  background: #f5f3ff; /* Soft violet tint */
+  box-shadow: var(--shadow-md), 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.tutor-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #f0fdf4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.tutor-select-card.selected .tutor-card-icon {
+  background: #4f46e5;
+  color: white;
+}
+
+.tutor-card-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.tutor-card-title {
+  font-weight: 700;
+  color: var(--secondary);
+  font-size: 1rem;
+}
+
+.tutor-card-subtitle {
+  font-size: 0.8rem;
+  color: var(--text);
+}
+
+/* Checkbox Grid */
+.tutor-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.tutor-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: var(--secondary);
+  cursor: pointer;
+  background: var(--bg-alt);
+  transition: all 0.2s;
+}
+
+.tutor-checkbox-label:hover {
+  border-color: #4f46e5;
+  background: white;
+}
+
+.tutor-checkbox-label.checked {
+  border-color: #4f46e5;
+  background: #f5f3ff;
+}
+
+.tutor-checkbox-input {
+  accent-color: #4f46e5;
+  width: 18px;
+  height: 18px;
+}
+
+/* Navigation Footer */
+.tutor-footer {
+  display: flex;
+  justify-content: justify-between;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.tutor-footer-btn-placeholder {
+  flex: 1;
+}
+
+.tutor-footer .btn {
+  padding: 0.85rem 2rem;
+  font-size: 0.95rem;
+  border-radius: var(--radius-full);
+}
+
+.tutor-footer .btn-primary {
+  flex: 2;
+  background: linear-gradient(135deg, #3b82f6 0%, #4f46e5 100%);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.3);
+}
+
+.tutor-footer .btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #4338ca 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.2);
+}
+
+.tutor-footer .btn-outline {
+  flex: 1;
+}
+
+/* Summary Receipt Style */
+.tutor-receipt-container {
+  border: 2px dashed #4f46e5;
+  background: var(--bg-alt);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  margin: 1.5rem 0;
+  text-align: left;
+  position: relative;
+}
+
+.tutor-receipt-header {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #4f46e5;
+  margin-bottom: 1rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tutor-receipt-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.925rem;
+}
+
+.tutor-receipt-label {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.tutor-receipt-value {
+  color: var(--secondary);
+  font-weight: 700;
+  text-align: right;
+  max-width: 60%;
+}
+
+.tutor-receipt-badge {
+  display: inline-block;
+  background: #e0e7ff;
+  color: #4338ca;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+/* Success Checkmark Circle */
+.tutor-success-checkmark-wrapper {
+  width: 64px;
+  height: 64px;
+  background: #ecfdf5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  border: 2px solid #10b981;
+  color: #10b981;
+}
