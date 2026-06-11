@@ -1,35 +1,33 @@
 export default function Footer() {
   return (
-    <footer style={{ background: 'var(--background)', padding: '6rem 0 3rem', borderTop: '1px solid rgba(255,255,255,0.05)', position: 'relative', zIndex: 10 }}>
+    <footer style={{ background: 'var(--bg-alt)', padding: '5rem 0 2rem', borderTop: '1px solid var(--border)' }}>
       <div className="container">
-        <div className="grid grid-cols-3 gap-8" style={{ marginBottom: '4rem' }}>
+        <div className="grid grid-cols-3 gap-8" style={{ marginBottom: '3rem' }}>
           <div>
-            <h3 style={{ marginBottom: '1.5rem', fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.02em' }}>
-              <span style={{ background: 'var(--gradient-glow)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>DIWAKAR</span>
-            </h3>
-            <p style={{ maxWidth: '250px' }}>
-              Elevating the standard of home education in Patna. Elite tutors, exceptional results.
+            <h3 style={{ marginBottom: '1rem', color: 'var(--primary)' }}>Diwakar Tutors</h3>
+            <p style={{ color: 'var(--text)', maxWidth: '280px' }}>
+              The most trusted home tuition platform in Patna. Connecting exceptional tutors with ambitious students.
             </p>
           </div>
           <div>
-            <h4 style={{ marginBottom: '1.5rem', color: 'white' }}>Platform</h4>
-            <ul className="flex flex-col gap-4">
-              <li><a href="#" className="nav-links">About the Ecosystem</a></li>
+            <h4 style={{ marginBottom: '1.25rem' }}>Quick Links</h4>
+            <ul className="flex flex-col gap-3">
+              <li><a href="#" className="nav-links">About Us</a></li>
               <li><a href="#" className="nav-links">Verified Tutors</a></li>
-              <li><a href="#" className="nav-links">Results & Success</a></li>
+              <li><a href="#" className="nav-links">Parent Guidelines</a></li>
             </ul>
           </div>
           <div>
-            <h4 style={{ marginBottom: '1.5rem', color: 'white' }}>Legal & Contact</h4>
-            <ul className="flex flex-col gap-4">
-              <li><a href="#" className="nav-links">Privacy Architecture</a></li>
-              <li><a href="#" className="nav-links">Terms of Service</a></li>
-              <li><a href="#" className="nav-links">contact@diwakar.edu</a></li>
+            <h4 style={{ marginBottom: '1.25rem' }}>Contact</h4>
+            <ul className="flex flex-col gap-3">
+              <li><a href="#" className="nav-links">support@diwakartutors.com</a></li>
+              <li><a href="#" className="nav-links">+91 73014 55882</a></li>
+              <li><a href="#" className="nav-links">Patna, Bihar</a></li>
             </ul>
           </div>
         </div>
-        <div className="text-center" style={{ fontSize: '0.875rem', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '3rem', color: 'var(--text-secondary)' }}>
-          &copy; {new Date().getFullYear()} Diwakar Sir Home Tutors. Designed for Excellence.
+        <div className="text-center" style={{ fontSize: '0.875rem', borderTop: '1px solid var(--border)', paddingTop: '2rem', color: '#94a3b8' }}>
+          &copy; {new Date().getFullYear()} Diwakar Sir Home Tutors. All rights reserved.
         </div>
       </div>
     </footer>

@@ -6,52 +6,51 @@ export default function TutorEnquiry() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus('Application submitted. Our academic board will review your profile and contact you within 48 hours.');
+    setStatus('Application submitted successfully! Our team will review your qualifications and contact you shortly.');
   };
 
   return (
-    <section className="section" style={{ minHeight: '100vh', paddingTop: '120px', position: 'relative' }}>
-      <div className="glow-bg"></div>
+    <section className="section section-alt" style={{ minHeight: '100vh', paddingTop: '120px' }}>
       <div className="container" style={{ maxWidth: '640px' }}>
         
-        <div className="text-center animate-fade-up" style={{ marginBottom: '3rem' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255, 0, 127, 0.1)', padding: '0.5rem 1rem', borderRadius: 'var(--radius-full)', border: '1px solid rgba(255, 0, 127, 0.2)', marginBottom: '1.5rem', fontSize: '0.875rem', fontWeight: 500, color: 'var(--accent-secondary)' }}>
+        <div className="text-center" style={{ marginBottom: '3rem' }}>
+          <div className="badge" style={{ marginBottom: '1.5rem', color: 'var(--primary)', borderColor: 'var(--primary)' }}>
             <GraduationCap size={16} /> 
-            <span>Educator Portal</span>
+            <span>Tutor Registration</span>
           </div>
-          <h2>Join as an Elite Tutor</h2>
-          <p style={{ marginTop: '1rem' }}>Empower the next generation while maintaining full control over your schedule and earnings.</p>
+          <h2>Join as a Home Tutor</h2>
+          <p style={{ marginTop: '0.75rem', fontSize: '1.125rem' }}>Teach students in Patna, set your own schedule, and earn well.</p>
         </div>
 
-        <div className="card animate-fade-up delay-1">
+        <div className="card">
           {status ? (
-            <div style={{ padding: '2rem', background: 'rgba(255, 255, 255, 0.03)', borderRadius: 'var(--radius-md)', textAlign: 'center', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-              <div style={{ width: '48px', height: '48px', background: 'var(--gradient-glow)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
-                <span style={{ color: 'white', fontSize: '1.5rem' }}>✓</span>
+            <div style={{ padding: '2rem', background: '#ecfdf5', borderRadius: 'var(--radius-md)', textAlign: 'center', border: '1px solid #a7f3d0' }}>
+              <div style={{ width: '48px', height: '48px', background: '#10b981', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
+                <span style={{ color: 'white', fontSize: '1.5rem', fontWeight: 'bold' }}>✓</span>
               </div>
-              <h3 style={{ marginBottom: '1rem' }}>Application Under Review</h3>
-              <p>{status}</p>
+              <h3 style={{ marginBottom: '1rem', color: '#065f46' }}>Application Received</h3>
+              <p style={{ color: '#047857' }}>{status}</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label className="form-label">Full Legal Name</label>
-                <input type="text" className="form-input" required placeholder="Enter your name" />
+                <label className="form-label">Full Name</label>
+                <input type="text" className="form-input" required placeholder="Enter your full name" />
               </div>
               
               <div className="form-group">
-                <label className="form-label">Highest Academic Qualification</label>
-                <input type="text" className="form-input" required placeholder="e.g., M.Sc Mathematics, IIT Patna" />
+                <label className="form-label">Highest Qualification</label>
+                <input type="text" className="form-input" required placeholder="e.g. B.Tech, M.Sc Mathematics" />
               </div>
               
               <div className="grid grid-cols-2 gap-4">
                 <div className="form-group">
-                  <label className="form-label">Core Subjects</label>
-                  <input type="text" className="form-input" required placeholder="e.g., Advanced Physics" />
+                  <label className="form-label">Subjects You Teach</label>
+                  <input type="text" className="form-input" required placeholder="e.g. Physics, Maths" />
                 </div>
                 <div className="form-group">
                   <label className="form-label">Years of Experience</label>
-                  <input type="number" className="form-input" required placeholder="e.g., 4" />
+                  <input type="number" className="form-input" required placeholder="e.g. 3" min="0" />
                 </div>
               </div>
               
@@ -60,8 +59,8 @@ export default function TutorEnquiry() {
                 <input type="tel" className="form-input" required placeholder="10-digit mobile number" pattern="[0-9]{10}" />
               </div>
               
-              <button type="submit" className="btn btn-gradient gap-2" style={{ width: '100%' }}>
-                <span>Submit Educator Profile</span> <ArrowRight size={18} />
+              <button type="submit" className="btn btn-primary gap-2" style={{ width: '100%', fontSize: '1.125rem', padding: '1rem' }}>
+                <span>Submit Application</span> <ArrowRight size={18} />
               </button>
             </form>
           )}
