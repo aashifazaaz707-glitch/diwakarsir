@@ -60,6 +60,8 @@ export default function ParentEnquiry() {
   });
 
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const googleSheetUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL || '';
 
   // Form Field Updates
   const handleChange = (field, value) => {
@@ -146,9 +148,39 @@ export default function ParentEnquiry() {
     setStep(prev => prev - 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateStep(5)) {
+      setIsSubmitting(true);
+      
+      const classLabel = CLASS_OPTIONS.find(c => c.id === formData.studentClass)?.title || formData.studentClass;
+      const timingLabel = TIMING_OPTIONS.find(t => t.id === formData.preferredTiming)?.title || formData.preferredTiming;
+      
+      const payload = {
+        parentName: formData.parentName.trim(),
+        mobileNumber: formData.mobileNumber.trim(),
+        studentClass: classLabel,
+        subjects: getSubjectsSummaryText(),
+        preferredTiming: timingLabel,
+        patnaArea: formData.patnaArea.trim()
+      };
+
+      if (googleSheetUrl) {
+        try {
+          await fetch(googleSheetUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+        } catch (err) {
+          console.error('Failed to submit to Google Sheets:', err);
+        }
+      }
+      
+      setIsSubmitting(false);
       setStep(6);
     }
   };
@@ -518,6 +550,7 @@ Please contact me to arrange the demo. Thank you!`;
                     type="button" 
                     className="btn btn-primary gap-2" 
                     onClick={handleNext}
+                    disabled={isSubmitting}
                   >
                     <span>Next</span> <ArrowRight size={16} />
                   </button>
@@ -525,8 +558,9 @@ Please contact me to arrange the demo. Thank you!`;
                   <button 
                     type="submit" 
                     className="btn btn-primary gap-2"
+                    disabled={isSubmitting}
                   >
-                    <span>Submit Request</span> <CheckCircle size={16} />
+                    <span>{isSubmitting ? 'Submitting...' : 'Submit Request'}</span> <CheckCircle size={16} />
                   </button>
                 )}
               </div>
